@@ -4,7 +4,7 @@
 	Josue Bonilla Cárdenas
 	Reg:22110106
 	CETI colomos
-	21/Agosto/2022
+	23/Agosto/2022
 **/
 
 #include<stdio.h>
@@ -55,16 +55,16 @@ public:
 	}
 
 	void setDimencion(int d) {
+		dimencion = d;
+	}
+
+	int getDimenciones() {
 		if (dimencion > 1) {
-			dimencion = d;
+			return dimencion;
 		}
 		else {
 			cout << "EL dato no corresponde, tiene que ser un numero mayor a 1" << endl;
 		}
-	}
-
-	int getDimenciones() {
-		return dimencion;
 	}
 };
 
@@ -90,16 +90,16 @@ public:
 	}
 
 	void setAltura(int a) {
+		altura = a;
+	}
+
+	int getAltura() {
 		if (altura > 1) {
-			altura = a;
+			return altura;
 		}
 		else {
 			cout << "EL dato no corresponde, tiene que ser un numero mayor a 1" << endl;
 		}
-	}
-
-	int getAltura() {
-		return altura;
 	}
 };
 
@@ -129,16 +129,16 @@ public:
 	}
 
 	void setRadio(int r) {
+		radio = r;
+	};
+
+	int getRadio() {
 		if (radio > 1) {
-			radio = r;
+			return radio;
 		}
 		else {
 			cout << "EL dato no corresponde, tiene que ser un numero mayor a 1" << endl;
 		}
-	};
-
-	int getRadio() {
-		return radio;
 	};
 };
 
@@ -153,7 +153,7 @@ int main(int argc, char** argv) {
 	Triangulo triangulo;
 	Circulo circulo;
 
-	cuadro.setDimencion(10);
+	cuadro.setDimencion(15);
 	triangulo.setAltura(10);
 	circulo.setRadio(10);
 
