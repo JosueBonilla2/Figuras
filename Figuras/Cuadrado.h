@@ -5,6 +5,7 @@
 #include<set>
 #include<string.h>
 #include<math.h>
+#include<conio.h>
 
 using namespace std;
 
@@ -23,43 +24,105 @@ class Cuadrado
 
 	public:
 
-		void crear_cuadrado_lleno() {
+		void gotoxy(int xM, int yM) {
+			HANDLE ventana;
+			ventana = GetStdHandle(STD_OUTPUT_HANDLE);
+			COORD cordenadas;
 
-			for (int c = 0; c <= posicion_y; c++) {
-				cout << endl;
-			}
-			for (int x = 1; x <= dimencion; x++)
-			{
-				for (int c = 0; c <= posicion_x; c++) {
-					cout << " ";
-				}
-				for (int y = 1; y <= dimencion; y++)
-				{
-					cout << "* ";
-				}
-				cout << "\n";
-			}
+			cordenadas.X = xM;
+			cordenadas.Y = yM;
+
+			SetConsoleCursorPosition(ventana, cordenadas);
 		}
-		void crear_cuadrado_vacio() {
-			for (int c = 0; c <= posicion_y; c++) {
-				cout << endl;
-			}
-			for (int x = 1; x <= dimencion; x++)
+
+		void crear_cuadrado_lleno() {
+			
+			char opcion;
+			int yM, xM;
+
+			xM = 0;
+			yM = 0;
+
+			opcion = _getch();
+
+			while (opcion != 'z')
 			{
-				for (int c = 0; c <= posicion_x; c++) {
-					cout << " ";
+				
+				system("cls");
+				gotoxy(xM, yM);
+
+				for (int c = 0; c < posicion_y; c++) {
+					cout << endl;
 				}
-				for (int y = 1; y <= dimencion; y++)
+				for (int x = 1; x <= dimencion; x++)
 				{
-					if (x == 1 || y == 1 || y == dimencion || x == dimencion)
+					for (int c = 0; c < posicion_x; c++) {
+						cout <<" ";
+					}
+					for (int y = 1; y <= dimencion; y++)
 					{
 						cout << "* ";
 					}
-					else {
-						cout << "  ";
-					}
+					cout << "\n";
 				}
-				cout << endl;
+
+				opcion = _getch();
+
+				switch (opcion)
+				{
+				case 'w': yM--; break;
+				case 's': yM++; break;
+				case 'a': xM--; break;
+				case 'd': xM++; break;
+				}
+
+			}
+		}
+		void crear_cuadrado_vacio() {
+
+			char opcion;
+			int yM, xM;
+
+			xM = 0;
+			yM = 0;
+
+			opcion = 'd';
+
+			while (opcion != 'z')
+			{
+
+				system("cls");
+				gotoxy(xM, yM);
+
+				for (int c = 0; c <= posicion_y; c++) {
+					cout << endl;
+				}
+				for (int x = 1; x <= dimencion; x++)
+				{
+					for (int c = 0; c <= posicion_x; c++) {
+						cout << " ";
+					}
+					for (int y = 1; y <= dimencion; y++)
+					{
+						if (x == 1 || y == 1 || y == dimencion || x == dimencion)
+						{
+							cout << "* ";
+						}
+						else {
+							cout << "  ";
+						}
+					}
+					cout << endl;
+				}
+				opcion = _getch();
+
+				switch (opcion)
+				{
+				case 'w': yM--; break;
+				case 's': yM++; break;
+				case 'a': xM--; break;
+				case 'd': xM++; break;
+				}
 			}
 		}
 

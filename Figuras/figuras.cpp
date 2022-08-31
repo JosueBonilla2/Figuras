@@ -10,12 +10,14 @@
 #include<stdio.h>
 #include<Windows.h>
 #include<iostream>
+#include<conio.h>
 #include<set>
 #include<string.h>
 #include<math.h>
 #include"Circulo.h"
 #include"Cuadrado.h"
 #include"Triangulo.h"
+
 
 using namespace std;
 
@@ -66,6 +68,7 @@ int main(int argc, char** argv) {
 			if (tipo == 1) {
 
 				cuadro.crear_cuadrado_lleno();
+
 			}
 			else {
 				if (tipo == 2) {
@@ -128,5 +131,5 @@ int main(int argc, char** argv) {
 		break;
 	}
 
-
+	return 0;
 }
