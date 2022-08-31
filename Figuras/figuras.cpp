@@ -4,158 +4,34 @@
 	Josue Bonilla Cárdenas
 	Reg:22110106
 	CETI colomos
-	23/Agosto/2022
+	30/Agosto/2022
 **/
 
 #include<stdio.h>
+#include<Windows.h>
 #include<iostream>
 #include<set>
 #include<string.h>
 #include<math.h>
+#include"Circulo.h"
+#include"Cuadrado.h"
+#include"Triangulo.h"
 
 using namespace std;
-
-class Cuadrado {
-
-	//atributos
-
-private:
-	int dimencion;
-
-
-	//metodos
-
-public:
-
-	void crear_cuadrado_lleno() {
-		for (int x = 1; x <= dimencion; x++)
-		{
-			for (int y = 1; y <= dimencion; y++)
-			{
-				cout << "* ";
-			}
-			cout << "\n";
-		}
-	}
-	void crear_cuadrado_vacio() {
-		for (int x = 1; x <= dimencion; x++)
-		{
-			for (int y = 1; y <= dimencion; y++)
-			{
-				if (x == 1 || y == 1 || y == dimencion || x == dimencion)
-				{
-					cout << "* ";
-				}
-				else {
-					cout << "  ";
-				}
-			}
-			cout << endl;
-		}
-	}
-
-	void setDimencion(int d) {
-		dimencion = d;
-	}
-
-	int getDimenciones() {
-		if (dimencion > 1) {
-			return dimencion;
-		}
-		else {
-			cout << "EL dato no corresponde, tiene que ser un numero mayor a 1" << endl;
-		}
-	}
-};
-
-
-
-class Triangulo {
-
-private:
-
-	int altura;
-
-public:
-
-	void crear_triangulo() {
-		for (int x = 1; x <= altura; x++)
-		{
-			for (int y = 1; y <= x; y++)
-			{
-				cout << "* ";
-			}
-			cout << "\n";
-		}
-	}
-
-	void setAltura(int a) {
-		altura = a;
-	}
-
-	int getAltura() {
-		if (altura > 1) {
-			return altura;
-		}
-		else {
-			cout << "EL dato no corresponde, tiene que ser un numero mayor a 1" << endl;
-		}
-	}
-};
-
-
-class Circulo {
-
-private:
-
-	int radio = 0;
-
-public:
-
-	void craer_circulo() {
-		for (int x = 0; x <= radio * 2; x++)
-		{
-			for (int y = 0; y <= radio * 2; y++)
-			{
-				if (pow(y - radio, 2.0) + pow(x - radio, 2.0) <= pow(radio, 2)) {
-					cout << "*";
-				}
-				else {
-					cout << " ";
-				}
-			}
-			cout << "\n";
-		}
-	}
-
-	void setRadio(int r) {
-		radio = r;
-	};
-
-	int getRadio() {
-		if (radio > 1) {
-			return radio;
-		}
-		else {
-			cout << "EL dato no corresponde, tiene que ser un numero mayor a 1" << endl;
-		}
-	};
-};
 
 int main(int argc, char** argv) {
 
 	cout << "\n\tJosue bonilla Cardenas - 2P - Tarea 2\n\n" << endl;
 
+	
+
 	int tipo;
 	int figura;
-
+	int radio, altura, dimencion,posicion_y, posicion_x;
+	
 	Cuadrado cuadro;
 	Triangulo triangulo;
 	Circulo circulo;
-
-	cuadro.setDimencion(15);
-	triangulo.setAltura(10);
-	circulo.setRadio(10);
 
 	cout << "\n\tBienvenido!!\n\n" << endl;
 
@@ -166,49 +42,89 @@ int main(int argc, char** argv) {
 	cin >> figura;
 
 	switch (figura) {
-	case 1:
+		case 1:
 
-		cout << "Las dimenciones del cuadrado estan en: " << cuadro.getDimenciones() << endl;
-		cout << endl;
+			cout << "Ingresa la dimencion del cuadrado: " << endl;
+			cin >> dimencion;
+			cuadro.setDimencion(dimencion);
+			cout << endl;
 
-		cout << "Que tipo de cuadrado decea imprimir?" << endl;
-		cin >> tipo;
-		cout << endl;
+			cuadro.getDimenciones();
 
-		if (tipo == 1) {
-			cuadro.crear_cuadrado_lleno();
-		}
-		else {
-			if (tipo == 2) {
-				cuadro.crear_cuadrado_vacio();
+			cout << "Que tipo de cuadrado decea imprimir?" << endl;
+			cin >> tipo;
+			cout << endl;
+
+			cout << "Introduse la altura en Y donde quieres que se muestre: " << endl;
+			cin >> posicion_y;
+			cuadro.setY(posicion_y);
+
+			cout << "Introduse la altura en x donde quieres que se muestre: " << endl;
+			cin >> posicion_x;
+			cuadro.setX(posicion_x);
+			
+			if (tipo == 1) {
+
+				cuadro.crear_cuadrado_lleno();
 			}
 			else {
-				cout << "El tipo ingresado no esta dentor de las opciones" << endl;
+				if (tipo == 2) {
+					
+					cuadro.crear_cuadrado_vacio();
+				}
+				else {
+					cout << "El tipo ingresado no esta dentor de las opciones" << endl;
+				}
 			}
-		}
 
 		break;
 
-	case 2:
+		case 2:
 
-		cout << "Las dimenciones del triangulo estan en: " << triangulo.getAltura() << endl;
-		cout << endl;
+			cout << "Ingrese la altura del triangulo: " << endl;
+			cin >> altura;
+			triangulo.setAltura(altura);
+			cout << endl;
 
-		triangulo.crear_triangulo();
+			cout << "Introduse la altura en Y donde quieres que se muestre: " << endl;
+			cin >> posicion_y;
+			triangulo.setY(posicion_y);
+
+			cout << "Introduse la altura en x donde quieres que se muestre: " << endl;
+			cin >> posicion_x;
+			triangulo.setX(posicion_x);
+
+			triangulo.getAltura();
+
+			
+			triangulo.crear_triangulo();
 
 		break;
 
-	case 3:
+		case 3:
 
-		cout << "El radio del circulo estan en: " << circulo.getRadio() << endl;
-		cout << endl;
+			cout << "Introduce el radio del circulo: " << endl;
+			cin >> radio;
+			circulo.setRadio(radio);
+			cout << endl;
 
-		circulo.craer_circulo();
+			cout << "Introduse la altura en Y donde quieres que se muestre: " << endl;
+			cin >> posicion_y;
+			circulo.setY(posicion_y);
 
-		break;
+			cout << "Introduse la altura en x donde quieres que se muestre: " << endl;
+			cin >> posicion_x;
+			circulo.setX(posicion_x);
 
-	default:
-		cout << "\n\nOpcion no valida\n" << endl;
+			circulo.getRadio();
+
+			
+			circulo.craer_circulo();
+
+			break;
+
+		default:
+			cout << "\n\nOpcion no valida\n" << endl;
 		break;
 	}
 
