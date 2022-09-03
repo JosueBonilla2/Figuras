@@ -130,11 +130,13 @@
     <ClCompile Include="Circulo.cpp" />
     <ClCompile Include="Cuadrado.cpp" />
     <ClCompile Include="figuras.cpp" />
+    <ClCompile Include="Programa.cpp" />
     <ClCompile Include="Triangulo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Circulo.h" />
     <ClInclude Include="Cuadrado.h" />
+    <ClInclude Include="Programa.h" />
     <ClInclude Include="Triangulo.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

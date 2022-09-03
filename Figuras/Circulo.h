@@ -16,8 +16,50 @@ private:
 
 	int radio = 0;
 	int posicion_y, posicion_x;
+	int repetir = 0;
 
 public:
+
+	void gotoxy(int x, int y) {
+
+		HANDLE ventana;
+		ventana = GetStdHandle(STD_OUTPUT_HANDLE);
+		COORD cordenadas;
+
+		cordenadas.X = posicion_x;
+		cordenadas.Y = posicion_y;
+
+		SetConsoleCursorPosition(ventana, cordenadas);
+	}
+
+	void mover_circulo() {
+		int x = 1, y = 1;
+		char opcion;
+		opcion = _getch();
+
+		while (opcion != 'z' && opcion != 'x')
+		{
+			system("cls");
+			cout << "\t\tIngrese (z) para salir del programa o (x) para regresar al menu inicial" ;
+			gotoxy(x, y);
+
+			craer_circulo();
+
+			opcion = _getch();
+			switch (opcion)
+			{
+			case 'w': posicion_y--; break;
+			case 's': posicion_y++; break;
+			case 'a': posicion_x--; break;
+			case 'd': posicion_x++; break;
+			}
+		}
+
+		if (opcion == 'x') {
+			system("cls");
+			repetir = 2;
+		}
+	}
 
 	void craer_circulo() {
 		for (int c = 0; c <= posicion_y; c++) {

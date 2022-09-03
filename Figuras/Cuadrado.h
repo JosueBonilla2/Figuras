@@ -11,52 +11,95 @@ using namespace std;
 
 class Cuadrado
 {
-
-
-
 	//atributos
 
 	private:
 		int dimencion;
 		int posicion_y, posicion_x;
+		int repetir = 0;
 
 	//metodos
 
 	public:
 
-		void gotoxy(int xM, int yM) {
+
+		void gotoxy(int x,int y) {
+
 			HANDLE ventana;
 			ventana = GetStdHandle(STD_OUTPUT_HANDLE);
 			COORD cordenadas;
 
-			cordenadas.X = xM;
-			cordenadas.Y = yM;
+			cordenadas.X = posicion_x;
+			cordenadas.Y = posicion_y;
 
 			SetConsoleCursorPosition(ventana, cordenadas);
 		}
 
-		void crear_cuadrado_lleno() {
-			
+		void mover_lleno() {
+			int x=1, y=1;
 			char opcion;
-			int yM, xM;
-
-			xM = 0;
-			yM = 0;
-
 			opcion = _getch();
 
-			while (opcion != 'z')
+			while (opcion != 'z' && opcion != 'x')
 			{
-				
 				system("cls");
-				gotoxy(xM, yM);
+				cout << "\t\tIngrese (z) para salir del programa o (x) para regresar al menu inicial";
+				gotoxy(x,y);
 
-				for (int c = 0; c < posicion_y; c++) {
+				crear_cuadrado_lleno();
+			
+				opcion = _getch();
+				switch (opcion)
+				{
+				case 'w': posicion_y--; break;
+				case 's': posicion_y++; break;
+				case 'a': posicion_x--; break;
+				case 'd': posicion_x++; break;
+				}
+			}
+			if (opcion == 'x') {
+				system("cls");
+				repetir = 2;
+			}
+		}
+
+		void mover_vacio() {
+			int x=1, y=1;
+			char opcion;
+			opcion = _getch();
+
+			while (opcion != 'z' && opcion != 'x')
+			{
+				system("cls");
+				cout << "\t\tIngrese (z) para salir del programa o (x) para regresar al menu inicial";
+				
+				gotoxy(x,y);
+
+				crear_cuadrado_vacio();
+
+				opcion = _getch();
+				switch (opcion)
+				{
+				case 'w': posicion_y--; break;
+				case 's': posicion_y++; break;
+				case 'a': posicion_x--; break;
+				case 'd': posicion_x++; break;
+				}
+			}
+			if (opcion == 'x') {
+				system("cls");
+				repetir = 2;
+			}
+		}
+
+		void crear_cuadrado_lleno() {
+			
+				for (int c = 0; c <= posicion_y; c++) {
 					cout << endl;
 				}
 				for (int x = 1; x <= dimencion; x++)
 				{
-					for (int c = 0; c < posicion_x; c++) {
+					for (int c = 0; c <= posicion_x; c++) {
 						cout <<" ";
 					}
 					for (int y = 1; y <= dimencion; y++)
@@ -65,35 +108,11 @@ class Cuadrado
 					}
 					cout << "\n";
 				}
-
-				opcion = _getch();
-
-				switch (opcion)
-				{
-				case 'w': yM--; break;
-				case 's': yM++; break;
-				case 'a': xM--; break;
-				case 'd': xM++; break;
-				}
-
-			}
 		}
+
 		void crear_cuadrado_vacio() {
 
-			char opcion;
-			int yM, xM;
-
-			xM = 0;
-			yM = 0;
-
-			opcion = 'd';
-
-			while (opcion != 'z')
-			{
-
-				system("cls");
-				gotoxy(xM, yM);
-
+		
 				for (int c = 0; c <= posicion_y; c++) {
 					cout << endl;
 				}
@@ -114,16 +133,8 @@ class Cuadrado
 					}
 					cout << endl;
 				}
-				opcion = _getch();
-
-				switch (opcion)
-				{
-				case 'w': yM--; break;
-				case 's': yM++; break;
-				case 'a': xM--; break;
-				case 'd': xM++; break;
-				}
-			}
+				
+			
 		}
 
 	void setDimencion(int d) {
