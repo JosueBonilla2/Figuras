@@ -30,7 +30,6 @@ class Cuadrado
 			COORD cordenadas;
 
 			cordenadas.X = posicion_x;
-			cordenadas.Y = posicion_y;
 
 			SetConsoleCursorPosition(ventana, cordenadas);
 		}
@@ -93,14 +92,13 @@ class Cuadrado
 		}
 
 		void crear_cuadrado_lleno() {
-			
-				for (int c = 0; c <= posicion_y; c++) {
-					cout << endl;
-				}
+			for (int c = 0; c < posicion_y; c++) {
+				cout << endl;
+			}
 				for (int x = 1; x <= dimencion; x++)
 				{
-					for (int c = 0; c <= posicion_x; c++) {
-						cout <<" ";
+					for (int c = 0; c < posicion_x; c++) {
+						cout << " ";
 					}
 					for (int y = 1; y <= dimencion; y++)
 					{
@@ -111,14 +109,12 @@ class Cuadrado
 		}
 
 		void crear_cuadrado_vacio() {
-
-		
-				for (int c = 0; c <= posicion_y; c++) {
-					cout << endl;
-				}
+			for (int c = 0; c < posicion_y; c++) {
+				cout << endl;
+			}
 				for (int x = 1; x <= dimencion; x++)
 				{
-					for (int c = 0; c <= posicion_x; c++) {
+					for (int c = 0; c < posicion_x; c++) {
 						cout << " ";
 					}
 					for (int y = 1; y <= dimencion; y++)

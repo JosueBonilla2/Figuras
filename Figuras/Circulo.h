@@ -27,7 +27,7 @@ public:
 		COORD cordenadas;
 
 		cordenadas.X = posicion_x;
-		cordenadas.Y = posicion_y;
+		
 
 		SetConsoleCursorPosition(ventana, cordenadas);
 	}
@@ -62,14 +62,14 @@ public:
 	}
 
 	void craer_circulo() {
-		for (int c = 0; c <= posicion_y; c++) {
+		for (int c = 0; c < posicion_y; c++) {
 			cout << endl;
 		}
 		for (int x = 0; x <= radio * 2; x++)
 		{
 			for (int c = 0; c <= posicion_x; c++) {
-				cout << " ";
-			}
+						cout <<" ";
+					}
 			for (int y = 0; y <= radio * 2; y++)
 			{
 				if (pow(y - radio, 2.0) + pow(x - radio, 2.0) <= pow(radio, 2)) {

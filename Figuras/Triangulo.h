@@ -27,8 +27,7 @@ class Triangulo
 			COORD cordenadas;
 
 			cordenadas.X = posicion_x;
-			cordenadas.Y = posicion_y;
-
+			
 			SetConsoleCursorPosition(ventana, cordenadas);
 		}
 
@@ -42,9 +41,7 @@ class Triangulo
 				system("cls");
 				cout << "\t\tIngrese (z) para salir del programa o (x) para regresar al menu inicial";
 				gotoxy(x, y);
-
 				crear_triangulo();
-
 				opcion = _getch();
 				switch (opcion)
 				{
@@ -62,12 +59,12 @@ class Triangulo
 		}
 
 		void crear_triangulo() {
-			for (int c = 0; c <= posicion_y; c++) {
+			for (int c = 0; c < posicion_y; c++) {
 				cout << endl;
 			}
 			for (int x = 1; x <= altura; x++)
 			{
-				for (int c = 0; c <= posicion_x; c++) {
+				for (int c = 0; c < posicion_x; c++) {
 					cout << " ";
 				}
 				for (int y = 1; y <= x; y++)
