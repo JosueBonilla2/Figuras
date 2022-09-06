@@ -6,46 +6,39 @@
 #include<string.h>
 #include<math.h>
 #include<conio.h>
+#include"Formas.h"
 
 using namespace std;
 
-class Cuadrado
+class Cuadrado : public Formas
 {
 	//atributos
 
 	private:
 		int dimencion;
-		int posicion_y, posicion_x;
-		int repetir = 0;
 
 	//metodos
 
 	public:
 
-
-		void gotoxy(int x,int y) {
-
-			HANDLE ventana;
-			ventana = GetStdHandle(STD_OUTPUT_HANDLE);
-			COORD cordenadas;
-
-			cordenadas.X = posicion_x;
-
-			SetConsoleCursorPosition(ventana, cordenadas);
+		Cuadrado(int _dimencion, int _posicion_x, int _posicion_y) : Formas(_posicion_x, _posicion_y)
+		{
+			dimencion = _dimencion;
 		}
 
-		void mover_lleno() {
+		void mover_forma() {
+			Formas::mover_forma();
 			int x=1, y=1;
 			char opcion;
 			opcion = _getch();
 
-			while (opcion != 'z' && opcion != 'x')
+			while (opcion != 'z')
 			{
 				system("cls");
-				cout << "\t\tIngrese (z) para salir del programa o (x) para regresar al menu inicial";
+				cout << "\t\tIngrese (z) para salir del modo mover figura";
 				gotoxy(x,y);
 
-				crear_cuadrado_lleno();
+				crear_forma();
 			
 				opcion = _getch();
 				switch (opcion)
@@ -56,25 +49,22 @@ class Cuadrado
 				case 'd': posicion_x++; break;
 				}
 			}
-			if (opcion == 'x') {
-				system("cls");
-				repetir = 2;
-			}
 		}
 
-		void mover_vacio() {
+		void mover_forma_vacia() {
+			Formas::mover_forma_vacia();
 			int x=1, y=1;
 			char opcion;
 			opcion = _getch();
 
-			while (opcion != 'z' && opcion != 'x')
+			while (opcion != 'z')
 			{
 				system("cls");
-				cout << "\t\tIngrese (z) para salir del programa o (x) para regresar al menu inicial";
+				cout << "\t\tIngrese (z) para salir del modo mover figura";
 				
-				gotoxy(x,y);
+				Formas::gotoxy(x,y);
 
-				crear_cuadrado_vacio();
+				crear_forma_vacia();
 
 				opcion = _getch();
 				switch (opcion)
@@ -85,13 +75,10 @@ class Cuadrado
 				case 'd': posicion_x++; break;
 				}
 			}
-			if (opcion == 'x') {
-				system("cls");
-				repetir = 2;
-			}
 		}
 
-		void crear_cuadrado_lleno() {
+		void crear_forma() {
+			Formas::crear_forma();
 			for (int c = 0; c < posicion_y; c++) {
 				cout << endl;
 			}
@@ -108,7 +95,8 @@ class Cuadrado
 				}
 		}
 
-		void crear_cuadrado_vacio() {
+		void crear_forma_vacia() {
+			Formas::crear_forma_vacia();
 			for (int c = 0; c < posicion_y; c++) {
 				cout << endl;
 			}
@@ -129,15 +117,15 @@ class Cuadrado
 					}
 					cout << endl;
 				}
-				
-			
 		}
 
-	void setDimencion(int d) {
+	void set(int d) {
+		Formas::set(dimencion);
 		dimencion = d;
 	}
 
-	int getDimenciones() {
+	int get() {
+		Formas::get();
 		if (dimencion > 1) {
 			return dimencion;
 		}
@@ -145,22 +133,6 @@ class Cuadrado
 			cout << "EL dato no corresponde, tiene que ser un numero mayor a 1" << endl;
 			system("cls");
 		}
-	}
-
-	void setY(int y_) {
-		posicion_y = y_;
-	}
-
-	int getY() {
-		return posicion_y;
-	}
-
-	void setX(int x_) {
-		posicion_x = x_;
-	}
-
-	int getX() {
-		return posicion_x;
 	}
 };
 

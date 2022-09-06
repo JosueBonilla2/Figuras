@@ -7,41 +7,37 @@
 #include<string.h>
 #include<math.h>
 #include<conio.h>
+#include"Formas.h"
 
 using namespace std;
 
-class Triangulo 
+class Triangulo : public Formas
 {
 	private:
 
 		int altura;
-		int posicion_y, posicion_x;
-		int repetir = 0;
 
 	public:
-	
-		void gotoxy(int x, int y) {
 
-			HANDLE ventana;
-			ventana = GetStdHandle(STD_OUTPUT_HANDLE);
-			COORD cordenadas;
-
-			cordenadas.X = posicion_x;
-			
-			SetConsoleCursorPosition(ventana, cordenadas);
+		Triangulo(int _altura, int _posicion_x, int _posicion_y) : Formas(_posicion_x, _posicion_y)
+		{
+			altura = _altura;
 		}
+	
+		void mover_forma() {
 
-		void mover_triangulo() {
+			Formas::mover_forma();
+
 			int x = 1, y = 1;
 			char opcion;
 			opcion = _getch();
 
-			while (opcion != 'z' && opcion != 'x')
+			while (opcion != 'z')
 			{
 				system("cls");
-				cout << "\t\tIngrese (z) para salir del programa o (x) para regresar al menu inicial";
-				gotoxy(x, y);
-				crear_triangulo();
+				cout << "\t\tIngrese (z) para salir del modo mover figura";
+				Formas::gotoxy(x, y);
+				crear_forma();
 				opcion = _getch();
 				switch (opcion)
 				{
@@ -51,14 +47,12 @@ class Triangulo
 				case 'd': posicion_x++; break;
 				}
 			}
-
-			if (opcion == 'x') {
-				system("cls");
-				repetir = 2;
-			}
 		}
 
-		void crear_triangulo() {
+		void crear_forma() {
+
+			Formas::crear_forma();
+
 			for (int c = 0; c < posicion_y; c++) {
 				cout << endl;
 			}
@@ -75,11 +69,13 @@ class Triangulo
 			}
 		}
 
-		void setAltura(int a) {
+		void set(int a) {
+			Formas::set(altura);
 			altura = a;
 		}
 
-		int getAltura() {
+		int get() {
+			Formas::get();
 			if (altura > 1) {
 				return altura;
 			}
@@ -87,22 +83,6 @@ class Triangulo
 				cout << "EL dato no corresponde, tiene que ser un numero mayor a 1" << endl;
 				system("cls");
 			}
-		}
-
-		void setY(int y_) {
-			posicion_y = y_;
-		}
-
-		int getY() {
-			return posicion_y;
-		}
-
-		void setX(int x_) {
-			posicion_x = x_;
-		}
-
-		int getX() {
-			return posicion_x;
 		}
 };
 

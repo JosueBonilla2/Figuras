@@ -10,26 +10,28 @@
 #include"Circulo.h"
 #include"Cuadrado.h"
 #include"Triangulo.h"
+#include"Formas.h"
+
+using namespace std;
 
 class Programa
 {
 	public:
 		void menu() {
-			int repetir = 0;
+			int repetir;
 
 			do {
 				cout << "\n\tJosue bonilla Cardenas - 2P - Tarea 2\n\n" << endl;
-
-
 
 				int tipo;
 				int figura;
 				int radio, altura, dimencion, posicion_y, posicion_x;
 
-				Cuadrado cuadro;
-				Triangulo triangulo;
-				Circulo circulo;
-				
+				Formas *forma[3];
+
+				forma[0] = new Triangulo(posicion_x, posicion_y, altura);
+				forma[1] = new Cuadrado(posicion_x, posicion_y, dimencion);
+				forma[2] = new Circulo(posicion_x, posicion_y, radio);
 
 				cout << "\n\tBienvenido!!\n\n" << endl;
 
@@ -37,19 +39,18 @@ class Programa
 				cout << "\n\tCuadrado(1)\n\n* * * * * * * *\n* * * * * * * *\n* * * * * * * *\n* * * * * * * *\n* * * * * * * *\n* * * * * * * *\n* * * * * * * *\n* * * * * * * *" << endl;
 				cout << "\n\tTriangulo(2)\n\n*\n* *\n* * *\n* * * *\n* * * * *\n* * * * * *\n* * * * * * *\n* * * * * * * *" << endl;
 				cout << "\n\tCirculo(3)\n\n       *****\n    ***********\n   *************\n  ***************\n  ***************\n  ***************\n   *************\n    ***********\n       *****\n" << endl;
-				cin >> figura;
-
 				
+				cin >> figura;
 
 				switch (figura) {
 				case 1:
 
 					cout << "Ingresa la dimencion del cuadrado: " << endl;
 					cin >> dimencion;
-					cuadro.setDimencion(dimencion);
+					forma[1]->set(dimencion);
 					cout << endl;
 
-					cuadro.getDimenciones();
+					forma[1]->get();
 
 					cout << "Que tipo de cuadrado decea imprimir?" << endl;
 					cout << "\n\tLleno(1)\n\n* * * * \n* * * *\n* * * *\n* * * *" << endl;
@@ -59,28 +60,31 @@ class Programa
 
 					cout << "Introduse la altura en Y donde quieres que se muestre: " << endl;
 					cin >> posicion_y;
-					cuadro.setY(posicion_y);
+					forma[1]->setY(posicion_y);
 
 					cout << "Introduse la altura en x donde quieres que se muestre: " << endl;
 					cin >> posicion_x;
-					cuadro.setX(posicion_x);
+					forma[1]->setX(posicion_x);
 
 					
 					
 					if (tipo == 1) {
 
-						cuadro.mover_lleno();
-
+						forma[1]->mover_forma();
+			
 					}
 					else {
 						if (tipo == 2) {
 
-							cuadro.mover_vacio();
+							forma[1]->mover_forma_vacia();
 						}
 						else {
 							cout << "El tipo ingresado no esta dentor de las opciones" << endl;
 						}
 					}
+
+					cout << "\nDesea salir del programa (0) o Regresar al menu?(1)" << endl;
+					cin >> repetir;
 
 					break;
 
@@ -88,20 +92,23 @@ class Programa
 
 					cout << "Ingrese la altura del triangulo: " << endl;
 					cin >> altura;
-					triangulo.setAltura(altura);
+					forma[0]->set(altura);
 					cout << endl;
 
-					triangulo.getAltura();
+					forma[0]->get();
 
 					cout << "Introduse la altura en Y donde quieres que se muestre: " << endl;
 					cin >> posicion_y;
-					triangulo.setY(posicion_y);
+					forma[0]->setY(posicion_y);
 
 					cout << "Introduse la altura en x donde quieres que se muestre: " << endl;
 					cin >> posicion_x;
-					triangulo.setX(posicion_x);
+					forma[0]->setX(posicion_x);
 				
-					triangulo.mover_triangulo();
+					forma[0]->mover_forma();
+
+					cout << "\Desea salir del programa (0) o Regresar al menu?(1)" << endl;
+					cin >> repetir;
 
 					break;
 
@@ -109,21 +116,23 @@ class Programa
 
 					cout << "Introduce el radio del circulo: " << endl;
 					cin >> radio;
-					circulo.setRadio(radio);
+					forma[2]->set(radio);
 					cout << endl;
 
-					circulo.getRadio();
+					forma[2]->get();
 
 					cout << "Introduse la altura en Y donde quieres que se muestre: " << endl;
 					cin >> posicion_y;
-					circulo.setY(posicion_y);
+					forma[2]->setY(posicion_y);
 
 					cout << "Introduse la altura en x donde quieres que se muestre: " << endl;
 					cin >> posicion_x;
-					circulo.setX(posicion_x);
+					forma[2]->setX(posicion_x);
 					
+					forma[2]->mover_forma();
 
-					circulo.mover_circulo();
+					cout << "\nDesea salir del programa (0) o Regresar al menu?(1)" << endl;
+					cin >> repetir;
 
 					break;
 
@@ -131,7 +140,7 @@ class Programa
 					cout << "\n\nOpcion no valida\n" << endl;
 					break;
 				}
-			} while (repetir != 2);
+			} while (repetir != 0);
 		}
 
 			void correr_programa() {

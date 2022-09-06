@@ -7,32 +7,26 @@
 #include<string.h>
 #include<math.h>
 #include<conio.h>
+#include"Formas.h"
 
 using namespace std;
 
-class Circulo
+class Circulo : public Formas
 {
 private:
 
 	int radio = 0;
-	int posicion_y, posicion_x;
-	int repetir = 0;
 
 public:
 
-	void gotoxy(int x, int y) {
-
-		HANDLE ventana;
-		ventana = GetStdHandle(STD_OUTPUT_HANDLE);
-		COORD cordenadas;
-
-		cordenadas.X = posicion_x;
-		
-
-		SetConsoleCursorPosition(ventana, cordenadas);
+	Circulo(int _radio, int _posicion_x, int _posicion_y) : Formas(_posicion_x, _posicion_y)
+	{
+		radio = _radio;
 	}
 
-	void mover_circulo() {
+
+	void mover_forma() {
+		Formas::mover_forma();
 		int x = 1, y = 1;
 		char opcion;
 		opcion = _getch();
@@ -40,10 +34,10 @@ public:
 		while (opcion != 'z' && opcion != 'x')
 		{
 			system("cls");
-			cout << "\t\tIngrese (z) para salir del programa o (x) para regresar al menu inicial" ;
+			cout << "\t\tIngrese (z) para salir del modo mover figura" ;
 			gotoxy(x, y);
 
-			craer_circulo();
+			craer_forma();
 
 			opcion = _getch();
 			switch (opcion)
@@ -54,14 +48,10 @@ public:
 			case 'd': posicion_x++; break;
 			}
 		}
-
-		if (opcion == 'x') {
-			system("cls");
-			repetir = 2;
-		}
 	}
 
-	void craer_circulo() {
+	void craer_forma() {
+		Formas::crear_forma();
 		for (int c = 0; c < posicion_y; c++) {
 			cout << endl;
 		}
@@ -83,11 +73,13 @@ public:
 		}
 	}
 
-	void setRadio(int r) {
+	void set(int r) {
+		Formas::set(radio);
 		radio = r;
 	};
 
-	int getRadio() {
+	int get() {
+		Formas::get();
 		if (radio > 1) {
 			return radio;
 		}
@@ -97,20 +89,5 @@ public:
 		}
 	}
 
-	void setY(int y_) {
-		posicion_y = y_;
-	}
-
-	int getY() {
-		return posicion_y;
-	}
-
-	void setX(int x_) {
-		posicion_x = x_;
-	}
-
-	int getX() {
-		return posicion_x;
-	}
 };
 
