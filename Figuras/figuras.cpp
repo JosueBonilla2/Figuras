@@ -4,7 +4,7 @@
 	Josue Bonilla Cárdenas
 	Reg:22110106
 	CETI colomos
-	04/Septiembre/2022
+	06/Septiembre/2022
 **/
 
 #include<stdio.h>
